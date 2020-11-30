@@ -1,0 +1,1 @@
+export const CIMB_ICON = require('./CIMB_Niaga_logo.png')
