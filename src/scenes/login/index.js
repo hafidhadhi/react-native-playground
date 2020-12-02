@@ -4,20 +4,21 @@ import {
     ScrollView,
     View,
     Text,
-    Image,
-    Button,
-    ToastAndroid,
-    TextInput
+    ToastAndroid
 } from 'react-native';
-import { CIMB_ICON } from '../../assets/images'
+
 import CimbIcon from '../../components/CimbIcon'
+import UsernameInput from '../../components/UsernameInput'
+import PasswordInput from '../../components/PasswordInput'
+import LoginBtn from '../../components/LoginBtn'
+import ForgotPwdBtn from '../../components/ForgotPwdBtn'
 
 const showToast = (text) => {
     ToastAndroid.showWithGravity(
         text,
         ToastAndroid.SHORT,
         ToastAndroid.CENTER
-      );
+    );
 }
 
 export default class LoginScreen extends Component {
@@ -27,7 +28,7 @@ export default class LoginScreen extends Component {
         this.state = {
             username: '',
             password: '',
-          }
+        }
     }
 
     doLogin() {
@@ -51,25 +52,15 @@ export default class LoginScreen extends Component {
         return (
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1, backgroundColor: "#F0F0F0" }}>
-                <CimbIcon/>
+                <CimbIcon />
                 <View style={{ margin: 32, elevation: 1, borderRadius: 10, backgroundColor: "#FFFFFF", justifyContent: "space-around", padding: 24 }}>
                     <Text style={{ fontSize: 14 }}>Welcome to</Text>
                     <Text style={{ fontSize: 16, fontWeight: "bold" }}>Sistem Informasi ATM Business</Text>
-                    <View style={{ marginTop: 32, flexDirection: "row" }}>
-                        <TextInput style={{ flex: 1 }} placeholder="Username/email" onChangeText={(text) => {this.setState({username:text})}} />
-                    </View>
-                    <TextInput placeholder="Password" onChangeText={(text) => {this.setState({password:text})}} />
-                    <View style={{ flexDirection: "row", marginTop: 32 }}>
-                        <View style={{ flex: 2, justifyContent: "center", alignItems: "flex-start" }}>
-                            <Text
-                                style={{ fontSize: 11, color: "#FF0000" }}
-                                onPress={() => {navigation.navigate("example")}}>Forgot Password</Text>
-                        </View>
-                        <View style={{ width: 100 }}>
-                            <Button
-                                title="Login"
-                                onPress={() => this.doLogin()} />
-                        </View>
+                    <UsernameInput onChangeText={(text) => this.setState({ username: text })} />
+                    <PasswordInput onChangeText={(text) => this.setState({ password: text })} />
+                    <View style={{ flexDirection: "row", marginTop: 32, alignItems:"center" }}>
+                        <ForgotPwdBtn onPress={() => navigation.navigate("example")} style={{ flex: 2, justifyContent: "center", alignItems: "flex-start" }}/>
+                        <LoginBtn style={{ width: 100 }} onPress={() => this.doLogin()}/>
                     </View>
                 </View>
             </ScrollView>
