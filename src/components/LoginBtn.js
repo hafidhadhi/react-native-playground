@@ -8,7 +8,8 @@ import PropTypes from 'prop-types'
 
 export default class LoginBtn extends Component {
     static propTypes = {
-        onPress: PropTypes.func
+        onPress: PropTypes.func,
+        isEnabled: PropTypes.bool
     }
 
     render() {
@@ -16,6 +17,8 @@ export default class LoginBtn extends Component {
             <View style={this.props.style}>
                 <Button
                     title="Login"
+                    color={ this.props.isEnabled? "#000FFF" : "#FF0000" }
+                    disabled = { !this.props.isEnabled }
                     onPress={() => this.props.onPress()} />
             </View>
         )

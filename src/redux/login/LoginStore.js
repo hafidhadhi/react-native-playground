@@ -1,4 +1,5 @@
 import loginReducer from '../login/LoginReducer'
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux'
+import thunk from "redux-thunk" 
 
-export default createStore(loginReducer) 
+export default createStore(loginReducer, applyMiddleware(thunk)) 
